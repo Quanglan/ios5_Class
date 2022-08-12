@@ -1,0 +1,107 @@
+﻿import Foundation
+
+class Student {
+    var stuName: String
+    var stuAge: Int
+    var stuPhone: String
+
+    init(stuName: String, stuAge: Int,stuPhone: String ) {
+        self.stuName = stuName
+        self.stuAge = stuAge
+        self.stuPhone = stuPhone
+    }
+
+    func setName(newName: String) {
+        self.stuName = newName
+    }
+
+    func getName() -> String {
+        return stuName
+    }
+
+    func getInfo() {
+        print("Student name: \(stuName) age: " + String(stuAge) + " phone: \(stuPhone)")
+    }
+    deinit {}
+    
+}
+
+class ClassRoom {
+    var className: String = "Techmaster"
+    var teachName: String = "Quỳnh"
+    var objStudent: [Student]
+
+    init(className: String, teachName: String, objStudent: [Student]) {
+        self.className = className
+        self.teachName = teachName
+        self.objStudent = objStudent
+    }
+
+    func setTeachName(newTeachName: String) {
+        teachName = newTeachName
+    }
+
+    func recruitStudent(newStudent: Student) {
+        objStudent.append(newStudent)
+    }
+
+    func removeStudent(rmstuName: String) {
+       objStudent.removeAll { element in 
+        return element.stuName == rmstuName
+        }
+    }
+}
+
+var objClass = ClassRoom(className: "Techmaster", teachName: "Quỳnh Teacher", objStudent: [
+    Student(stuName: "Nam", stuAge: 29 , stuPhone: ""),
+    Student(stuName: "Hoàng", stuAge: 27, stuPhone: "092778762"),
+    Student(stuName: "Linh", stuAge: 27, stuPhone: ""),
+    Student(stuName: "Huyền", stuAge: 27, stuPhone: "095826257"),
+    Student(stuName: "Đức", stuAge: 27, stuPhone: ""),
+    Student(stuName: "Dương", stuAge: 27, stuPhone: "098766599"),
+    Student(stuName: "Tùng", stuAge: 27, stuPhone: ""),
+    Student(stuName: "Bằng", stuAge: 27, stuPhone: "095988768"),
+    Student(stuName: "Bắc", stuAge: 27, stuPhone: ""),  
+    Student(stuName: "Thanh", stuAge: 27, stuPhone: "092776354"),           
+])
+print("Number of student is  \(objClass.objStudent.count) in class \(objClass.className)")
+var checkFind1 = false
+var checkFind2 = false
+var checkFind3 = false
+
+for std in objClass.objStudent {
+    if std.getName() == "Nam"  { 
+        std.setName(newName: "Đông") 
+        checkFind1 = true
+    } 
+    if std.getName() == "Bá" { 
+        std.setName(newName: "Đông") 
+        checkFind2 = true
+    } 
+}
+if checkFind1 == true {
+    print("Tìm thấy Nam  và đổi tên thành công sang Đông")
+} else {
+    print("Không tìm thấy Nam và đổi tên không thành công sang Đông")    
+}
+if checkFind2 == true {
+    print("Tìm thấy Bá  và đổi tên thành công sang Đông")
+} else {
+    print("Không tìm thấy Bá và đổi tên không thành công sang Đông")    
+}
+
+for std in objClass.objStudent {
+    if std.getName() == "Đức" || std.getName() == "Lan" {
+       objClass.removeStudent(rmstuName: std.getName())
+       checkFind3 = true
+    }
+}
+if checkFind3 == true {
+    print("Tìm thấy sinh viên tên Đức/Lan và xóa thành công")
+}
+
+print("Lớp học: \(objClass.className) giáo viên: \(objClass.teachName)" )
+
+for stddanhsach in objClass.objStudent {
+    stddanhsach.getInfo()
+}

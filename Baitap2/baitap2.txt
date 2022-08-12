@@ -1,0 +1,144 @@
+﻿//Bai2.1
+func giaiPhuongtrinhbac2() {
+  print("Ctrinh tim nghiem phuong trinh bac 2 ax^2+bx+c=0")
+  print("Nhap gia tri cho a", terminator: ":")
+  let a = Float(readLine()!)!
+  print("Nhap gia tri cho b", terminator: ":")
+  let b = Float(readLine()!)!
+  print("Nhap gia tri cho c", terminator: ":")
+  let c = Float(readLine()!)!
+  let delta = b*b - 4*a*c
+  print("Ket qua")
+ 
+  if a+b+c == 0 {
+    print("P.trinh co 2 nghiem x1 = 1, x2 = \(c/a)")
+  } else if a-b+c == 0 {
+    print("P.trinh co 2 nghiem x1 = -1, x2 = \(-c/a)")
+  } else if delta < 0 {
+    print("P.trinh vo nghiem")
+  } else if delta == 0 {
+    print("P.trinh co nghiem kep x1 = x2 = \(-b/(2*a))")
+  } else {
+    print("P.trinh co 2 nghiem phan biet x1 = \(-b+sqrt(2*delta/a)) x2 = \(-b-sqrt(2*delta/a))")
+  } 
+}
+//giaiPhuongtrinhbac2()
+
+
+//Bai2.2: Viết chương trình nhập vào 1 mảng số nguyên. Yêu cầu in ra danh sách số lẻ và danh sách số chẵn có trong mảng.
+
+func mangSoNguyen() {
+  var arrayNum: [Int] = []
+  print("Nhap so luong phan tu cua mang so nguyen", terminator: ":")
+  let n = Int(readLine()!)!
+  var i = 0
+  while (i < n ) {
+    i += 1
+    print("Nhap phan tu thu \(i) cua mang so nguyen", terminator: ":")
+    arrayNum.append(Int(readLine()!)!)
+  }
+  var arraySole: [Int] = []
+  var arraySochan: [Int] = []
+  for arrElement in arrayNum {
+    if arrElement%2 == 0 {
+      arraySochan.append(arrElement)
+    } else {
+      arraySole.append(arrElement)
+    }
+  }
+  if arraySochan.isEmpty {
+    print("Mang khong co so chan")
+  } else {
+    print("Danh sach cac phan tu chan trong mang la:")
+    for arr in arraySochan {
+      print(arr, terminator: ", ")
+    }
+    print("\n")
+  }
+  
+  if arraySole.isEmpty {
+    print("Mang khong co so le")
+  }  else {
+    print("Danh sach cac phan tu le trong mang la:")
+    for arr in arraySole {
+      print(arr, terminator: ", ")
+    }
+  }
+}
+//mangSoNguyen()
+
+//Bai2.3 Viết chương trình nhập vào họ và tên. In ra họ, tên của người vừa nhập
+func nhapHoten() {
+  print("Nhap ten", terminator: ":")
+  let fullName = String(readLine()!)
+  let  arr = fullName.split(separator: " ")
+  print("Ho la: \(arr[0]), ten la: \(fullName.suffix(fullName.count-1-arr[0].count))")
+}
+//nhapHoten()
+
+//Bài2.4: Viết chương trình tính giai thừa của 1 số. Biết x! = x*(x-1)(x-2)…32*1.
+func tinhGiaithua() {
+  print("Tinh giai thua 1 so theo cong thuc x! = x*(x-1)(x-2)…32*1")
+  print("Nhap so can tinh giai thua", terminator: ":")
+  let x = Double(readLine()!)!
+  var i: Double = 0
+  var giaithua: Double = 1
+  while i < 33 {
+    giaithua = giaithua * (x-i)
+    i += 1
+  }
+  print("Giai thua co ket qua la: \(giaithua)")
+}
+//tinhGiaithua()
+
+//Bài2.5: Viết chương trình sắp xếp 1 dãy số vừa nhập thành 1 dãy tăng dần và giảm dần.
+func sapxepDayso() {
+  print("Sap xep 1 day so thanh tang dan va giam dan")
+  print("Nhap day so, cac phan tu cach nhau 1 dau trong", terminator: ":")
+  let dayso = String(readLine()!)
+  let  arrChuoiso = dayso.split(separator: " ")
+  var arrNum: [Int] = []
+  for so in arrChuoiso {
+    arrNum.append(Int(so)!)
+  }
+  let arrSortAsc = arrNum.sorted()
+  let arrSortDsc = arrNum.sorted(by: >)
+  print("Sap xep day so tang dan:")
+  print(" \(arrSortAsc)")
+  print("Sap xep day so giam dan:")
+  print(" \(arrSortDsc)")
+}
+//sapxepDayso()
+//Bài2.6: Viết chương trình nhập menu chon 1 số từ 1 đến 5
+print("MENU CHINH CUA CHUONG TRINH")
+print("----------------------------------------")
+print("1. Giai phuong trinh bac 2")
+print("2. Mang so nguyen sap xep chan le")
+print("3. In ho va ten nhap vao may tinh")
+print("4. Tinh giai thua x! = x*(x-1)(x-2)…32*1.")
+print("5. Sap xep day so tang dan va giam dan")
+print("6. Thoat khoi chuong trinh")
+print("----------------------------------------")
+print("Nhap lua chon cua ban", terminator: ":")
+var option = Int(readLine()!)!
+while (option < 1 || option > 6) {
+  print("Lua chon sai, chon lai", terminator: ":")
+  option = Int(readLine()!)!
+}
+switch option {
+  case 1:
+    giaiPhuongtrinhbac2()
+  case 2:
+    mangSoNguyen()
+  case 3:
+    nhapHoten()
+  case 4:
+    tinhGiaithua()
+  case 5:
+    sapxepDayso()
+  case 6:
+    print("Da thoat kho chuong trinh")
+  default:
+    print("ban chon \(option)")
+}
+
